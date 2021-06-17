@@ -1,6 +1,6 @@
 # SDA Generator
 
-This is a small tool that leverages [InterSystems IRIS for Health](https://hub.docker.com/_/intersystems-iris-for-health) to SDA based on [Synthea](https://github.com/synthetichealth/synthea) CCDA.
+This is a small tool that leverages [InterSystems IRIS for Health](https://hub.docker.com/_/intersystems-iris-for-health) to generate SDA based on [Synthea](https://github.com/synthetichealth/synthea) CCDA.
 
 ## Install
 
@@ -22,3 +22,35 @@ docker run --rm -v $PWD/output:/output hsdemo-loader/synthea:base /synthea/bin/s
 All your generated CCDA files will be saved inside **./ouput/sda3**
 
 Once you are done simply discard the container running `docker-compose down`
+
+## Helpul links
+
+- [Install Docker](https://docs.docker.com/get-docker/)
+- [Install docker-compose](https://docs.docker.com/compose/install/)
+
+## Directory Structure
+
+```bash
+├── Dockerfile
+├── Dockerfile.Synthea
+├── LICENSE
+├── README.md
+├── code
+│   └── src
+│       ├── XF
+│       │   ├── CCDA
+│       │   │   └── FileInbound.cls
+│       │   ├── Installer.cls
+│       │   └── SDA3
+│       │       └── FileOutbound.cls
+│       └── XFPKG
+│           └── FoundationProduction.cls
+├── docker-compose.yml
+├── output
+│   └── sda3
+├── scripts
+│   └── build.sh
+└── sda-generator.code-workspace
+
+9 directories, 11 files
+```
