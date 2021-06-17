@@ -1,0 +1,6 @@
+.DS_Store
+output/*
+!output/sda3
+output/sda3/*
+!output/sda3/.gitkeep
+

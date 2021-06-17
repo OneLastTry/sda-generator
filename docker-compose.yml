@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  synthea:
+    image: hsdemo-loader/synthea:base
+    init: true
+    build:
+      context: .
+      dockerfile: Dockerfile.Synthea
+    container_name: synthea
+    restart: "no"
+    volumes:
+    - ./output:/output
+
+  iris:
+    image: hsdemo-loader/iris:base
+    init: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: hsdemo-loader
+    container_name: hsdemo-loader
+    ports:
+    - "9091:51773" 
+    - "9092:52773"
+    restart: "no"
+    volumes:
+    - ./output:/output
+    - ./code:/code

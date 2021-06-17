@@ -1,0 +1,35 @@
+{
+	"folders": [
+		{
+			"name": "main",
+			"path": ".",
+			"objectscript.conn.active": false
+		},
+		{
+			"name": "sda-generator",
+			"path": "code"
+		},
+		{
+			"name": "generator:XF (read-only)",
+			"uri": "isfs-readonly://generator:xf/"
+		}
+	],
+	"settings": {
+		"objectscript.conn": {
+			"active": false
+		},
+		"intersystems.servers": {
+			"generator": {
+				"webServer": {
+					"scheme": "http",
+					"host": "localhost",
+					"port": 9092
+				},
+				"description": "generator",
+				"username": "superuser",
+				"password": "SYS"
+			},
+			"/default": "generator"
+		}
+	}
+}

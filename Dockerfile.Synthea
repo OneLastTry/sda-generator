@@ -1,0 +1,28 @@
+FROM ubuntu AS synthea-base
+
+# install git
+RUN apt-get update \       
+    && apt-get install -y git
+
+# clone synthea
+WORKDIR /tmp
+RUN git clone --depth 1 https://github.com/synthetichealth/synthea.git \
+    && chmod -R 777 synthea
+
+FROM gradle:6.0.1-jdk8 AS builder
+
+COPY --from=synthea-base /tmp/synthea /home/gradle/project
+WORKDIR /home/gradle/project
+
+RUN gradle assemble \
+    && cd /home/gradle/project/build/distributions \
+    && tar -xf synthea.tar
+
+FROM openjdk:8-jdk-alpine AS executor
+
+VOLUME /output
+COPY --from=builder /home/gradle/project/build/distributions/synthea /synthea
+
+ENV APP_HOME=/synthea
+
+#ENTRYPOINT [ "/synthea/bin/synthea"]
