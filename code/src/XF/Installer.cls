@@ -26,12 +26,12 @@ XData Install [ XMLNamespace = INSTALLER ]
             <Log Text="SOURCE defined - offline install from ${SOURCE}" Level="0"/>
             <Import File="${SOURCE}" Recurse="true"/>
         </IfDef> 
-        <Log Text="Configure auto-start production for ${PRODUCTION}..." Level="0"/>
-            <Invoke Class="XF.Installer" Method="SetupProduction" CheckStatus="true">
-            <Arg name="production" Value="${PRODUCTION}"/>
-        </Invoke>
         <Log Text="Prepare Foundation..." Level="0"/>
         <Invoke Class="XF.Installer" Method="PrepareFoundation" CheckStatus="true">
+        </Invoke>
+        <Log Text="Configure auto-start production for ${PRODUCTION}..." Level="0"/>
+        <Invoke Class="XF.Installer" Method="SetupProduction" CheckStatus="true">
+            <Arg name="production" Value="${PRODUCTION}"/>
         </Invoke>
     </Namespace>
 </Manifest>
@@ -78,6 +78,8 @@ ClassMethod SetupProduction(production As %String) As %Status
     set sc = $$$OK
     try {
         #; setup and start production
+        new $namespace
+        set $namespace = ..#NAMESPACE
         set sc = $$$ADDSC(sc,##class(Ens.Director).SetAutoStart(production,1))
         set sc = $$$ADDSC(sc,##class(Ens.Director).StartProduction(production))
     } catch (err) {
@@ -90,9 +92,8 @@ ClassMethod PrepareFoundation() As %Status
 {
     set sc = $$$OK
     try {
-        //Install a Foundation namespace and change to it
+        //Install a Foundation
         do ##class(HS.HC.Util.Installer).InstallFoundation("XF")
-        set $namespace = "XF"
     } catch (err) {
         set sc = $$$ADDSC(sc,err.AsStatus())
     }

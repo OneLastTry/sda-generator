@@ -20,8 +20,8 @@ services:
     hostname: hsdemo-loader
     container_name: hsdemo-loader
     ports:
-    - "9091:51773" 
-    - "9092:52773"
+    - "8091:51773" 
+    - "8092:52773"
     restart: "no"
     volumes:
     - ./output:/output
