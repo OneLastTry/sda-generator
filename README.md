@@ -17,7 +17,7 @@ Note that **p** is the number of patient, hence the example below generates 5 pa
 Do not run for more than 10K patients, if you need a large sample see the last section of this file.
 
 ```bash
-docker run --rm -v $PWD/output:/output hsdemo-loader/synthea:base /synthea/bin/synthea --exporter.ccda.export=true --exporter.fhir.export=false --exporter.hospital.fhir.export=false -p 5
+docker run --rm -v $PWD/output:/output hsdemo-sda/synthea:base /synthea/bin/synthea --exporter.ccda.export=true --exporter.fhir.export=false --exporter.hospital.fhir.export=false -p 5
 ```
 
 All your generated CCDA files will be saved inside **./ouput/sda3**

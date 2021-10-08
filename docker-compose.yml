@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   synthea:
-    image: hsdemo-loader/synthea:base
+    image: hsdemo-sda/synthea:base
     init: true
     build:
       context: .
@@ -12,13 +12,13 @@ services:
     - ./output:/output
 
   iris:
-    image: hsdemo-loader/iris:base
+    image: hsdemo-sda/iris:base
     init: true
     build:
       context: .
       dockerfile: Dockerfile
-    hostname: hsdemo-loader
-    container_name: hsdemo-loader
+    hostname: hsdemo-sda
+    container_name: hsdemo-sda
     ports:
     - "8091:51773" 
     - "8092:52773"

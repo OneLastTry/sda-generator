@@ -60,7 +60,7 @@ function finish()
 function start() 
 {
     docker-compose up -d &> /dev/null
-    docker run -d --rm -v $PWD/output:/output hsdemo-loader/synthea:base /synthea/bin/synthea \
+    docker run -d --rm -v $PWD/output:/output hsdemo-sda/synthea:base /synthea/bin/synthea \
         --exporter.ccda.export=true \
         --exporter.fhir.export=false \
         --exporter.hospital.fhir.export=false \

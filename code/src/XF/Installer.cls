@@ -49,6 +49,10 @@ ClassMethod UnExpireUserPasswords() As %Status
     try {
         new $namespace
         set $namespace = "%SYS"
+        kill p do ##class(Security.Users).Get("Admin",.p) set (p("PasswordNeverExpires"),p("AccountNeverExpires"))=1 do ##class(Security.Users).Modify("Admin",.p)
+        kill p do ##class(Security.Users).Get("irisowner",.p) set (p("PasswordNeverExpires"),p("AccountNeverExpires"))=1 do ##class(Security.Users).Modify("irisowner",.p)
+        kill p do ##class(Security.Users).Get("SuperUser",.p) set (p("PasswordNeverExpires"),p("AccountNeverExpires"))=1 do ##class(Security.Users).Modify("SuperUser",.p)
+        kill p do ##class(Security.Users).Get("_SYSTEM",.p) set (p("PasswordNeverExpires"),p("AccountNeverExpires"))=1 do ##class(Security.Users).Modify("_SYSTEM",.p)
         do ##class(Security.Users).UnExpireUserPasswords("*")
     } catch (err) {
         set sc = $$$ADDSC(sc,err.AsStatus())
