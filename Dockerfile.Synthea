@@ -9,7 +9,7 @@ WORKDIR /tmp
 RUN git clone --depth 1 https://github.com/synthetichealth/synthea.git \
     && chmod -R 777 synthea
 
-FROM gradle:6.0.1-jdk8 AS builder
+FROM gradle:7.4.2-jdk8 AS builder
 
 COPY --from=synthea-base /tmp/synthea /home/gradle/project
 WORKDIR /home/gradle/project

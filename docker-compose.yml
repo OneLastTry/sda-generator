@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   synthea:
-    image: hsdemo-sda/synthea:base
+    image: intersystems/demo/synthea/app:latest
     init: true
     build:
       context: .
@@ -12,7 +12,7 @@ services:
     - ./output:/output
 
   iris:
-    image: hsdemo-sda/iris:base
+    image: intersystems/demo/synthea/iris:latest
     init: true
     build:
       context: .
@@ -20,7 +20,7 @@ services:
     hostname: hsdemo-sda
     container_name: hsdemo-sda
     ports:
-    - "8091:51773" 
+    - "8091:1972" 
     - "8092:52773"
     restart: "no"
     volumes:

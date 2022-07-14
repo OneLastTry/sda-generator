@@ -1,7 +1,6 @@
-ARG IMAGE=store/intersystems/irishealth-community:2021.1.0.215.3
+ARG IMAGE=containers.intersystems.com/intersystems/irishealth-community:2022.2.0.281.0
 FROM $IMAGE AS IRISHealthBuilder
 
-USER ${ISC_PACKAGE_MGRUSER}
 ENV IRIS_PASSWORD="SYS"
 
 # Install custom code
@@ -9,7 +8,6 @@ COPY code/src /tmp/src
 COPY scripts /tmp/scripts
 
 USER root
-
 RUN chown -R ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /tmp/scripts \
     && chmod +x /tmp/scripts/build.sh
 
@@ -42,3 +40,5 @@ RUN \
   && chown -R ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /usr/irissys/mgr/xf \
   && chown -R ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /usr/irissys/mgr/hssys/IRIS.DAT \
   && chmod -R 775 /usr/irissys/mgr/xf/IRIS.DAT 
+
+USER ${ISC_PACKAGE_MGRUSER}
