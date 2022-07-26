@@ -5,6 +5,7 @@ This is a small tool that leverages [InterSystems IRIS for Health](https://hub.d
 ## Install
 
 Clone the repo `git clone https://github.com/OneLastTry/sda-generator.git` and then execute from the main directory `docker-compose build`.
+_(for arm64 run `docker-compose --env-file=.env-arm64 build`)_
 
 ## Execution
 
