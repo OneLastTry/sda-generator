@@ -13,7 +13,6 @@ services:
 
   iris:
     image: intersystems/demo/synthea/iris:latest
-    init: true
     build:
       context: .
       dockerfile: Dockerfile
