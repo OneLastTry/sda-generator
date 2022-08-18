@@ -1,5 +1,4 @@
-ARG ARCH
-ARG IMAGE=containers.intersystems.com/intersystems/irishealth-community$ARCH:2022.2.0.304.0
+ARG IMAGE=rlourenc/irishealth-community:latest
 FROM $IMAGE AS IRISHealthBuilder
 
 ENV IRIS_PASSWORD="SYS"

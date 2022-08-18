@@ -16,8 +16,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        ARCH: $ARCH
     hostname: hsdemo-sda
     container_name: hsdemo-sda
     ports:
